@@ -15,9 +15,9 @@ def eyeaspectratio(eye) :
 
 if __name__ == "__main__" :
     threshold = 0.3
-    filename = "loud_alarm.wav" #file for the alarm
+    filename = "alarm.mp3" #file for the alarm
     data, fs = sf.read(filename, dtype='float32')  #read the file
-    frame_limit_for_warning = 30
+    frame_limit_for_warning = 20
     face_detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") #reading the shape predictor file
     count = 0 #counter for the frames in which driver is drowsy
@@ -38,8 +38,8 @@ if __name__ == "__main__" :
             #cleaning the array and bringing it to a useable format
             lefteyehull = cv2.convexHull(leye)
             righteyehull = cv2.convexHull(reye)
-            cv2.drawContours(frame , [lefteyehull], -1 ,(0,0,255) , 1)
-            cv2.drawContours(frame , [righteyehull], -1 ,(0,0,255) , 1)
+            #cv2.drawContours(frame , [lefteyehull], -1 ,(0,0,255) , 1)
+            #cv2.drawContours(frame , [righteyehull], -1 ,(0,0,255) , 1)
             #plot and draw contours for the eyes
             lEAR = eyeaspectratio(leye) #compute EAR for left eye
             rEAR = eyeaspectratio(reye) #compute EAR for left eye
